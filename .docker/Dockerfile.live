@@ -1,0 +1,47 @@
+FROM oven/bun:1 AS base
+WORKDIR /app
+
+# Install dependencies only when needed
+FROM base AS deps
+RUN mkdir -p /temp/dev
+COPY package.json bun.lock /temp/dev/
+RUN cd /temp/dev && bun install --frozen-lockfile
+
+# Install production dependencies separately
+RUN mkdir -p /temp/prod
+COPY package.json bun.lock /temp/prod/
+RUN cd /temp/prod && bun install --frozen-lockfile --production
+
+# Rebuild the source code only when needed
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /temp/dev/node_modules ./node_modules
+COPY . .
+
+ENV NEXT_TELEMETRY_DISABLED 1
+ENV NODE_ENV=production
+
+RUN \
+  if [ -f bun.lock ]; then bun run build; \
+  else echo "bun.lock not found." && exit 1; \
+  fi
+
+# Production image, copy all the files and run next
+FROM base AS runner
+WORKDIR /app
+
+ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
+
+# Use built-in bun user instead of creating new users
+USER bun
+
+COPY --from=deps /temp/prod/node_modules ./node_modules
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+
+EXPOSE 3000
+ENV PORT 3000
+
+CMD ["bun", "server.js"]
