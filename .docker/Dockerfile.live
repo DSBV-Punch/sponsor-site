@@ -8,6 +8,7 @@ COPY package.json bun.lock /temp/dev/
 RUN cd /temp/dev && bun install --frozen-lockfile
 
 # Install production dependencies separately
+FROM base AS deps_prod
 RUN mkdir -p /temp/prod
 COPY package.json bun.lock /temp/prod/
 RUN cd /temp/prod && bun install --frozen-lockfile --production
@@ -36,10 +37,11 @@ ENV NEXT_TELEMETRY_DISABLED 1
 # Use built-in bun user instead of creating new users
 USER bun
 
-COPY --from=deps /temp/prod/node_modules ./node_modules
+COPY --from=deps_prod /temp/prod/node_modules ./node_modules
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
+# Copy and then change ownership immediately
+COPY --chown=bun:bun --from=builder /app/.next/static ./.next/static
 
 EXPOSE 3000
 ENV PORT 3000
