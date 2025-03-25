@@ -34,13 +34,15 @@ WORKDIR /app
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
+# Create the .next/cache directory and set ownership
+RUN mkdir -p .next/cache && chown -R bun:bun .next/cache
+
 # Use built-in bun user instead of creating new users
 USER bun
 
 COPY --from=deps_prod /temp/prod/node_modules ./node_modules
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
-# Copy and then change ownership immediately
 COPY --chown=bun:bun --from=builder /app/.next/static ./.next/static
 
 EXPOSE 3000
