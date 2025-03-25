@@ -5,6 +5,7 @@ import WTeamSection from "@/components/w-team-section";
 import MTeamSection from "@/components/m-team-section";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MobilePadding } from "@/components/mobile-padding";
+import { Carousel } from "@/components/carousel";
 
 export default function TeamPage() {
 	const [activeTab, setActiveTab] = useState("women");
@@ -13,6 +14,7 @@ export default function TeamPage() {
 		<main className="relative">
 			<div className="container mx-auto py-12">
 				<MobilePadding>
+					<Carousel />
 					<section className="mb-12">
 						<h1 className="text-4xl font-bold text-center mb-8 text-white">
 							Meet Our Teams

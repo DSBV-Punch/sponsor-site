@@ -35,8 +35,8 @@ export function TeamDisplay({ teamMembers }: TeamDisplayProps) {
 							<Image
 								src={member.imageUrl}
 								alt={member.name}
-								layout="fill"
-								objectFit="cover"
+								fill={true}
+								style={{ objectFit: "cover" }}
 								className="rounded-md"
 							/>
 						</div>

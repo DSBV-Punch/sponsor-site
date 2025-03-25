@@ -13,7 +13,7 @@ const HighlightData = [
 	{
 		title: "Access Top Talent",
 		description:
-			"Connect with ambitious TU Delft students excelling in STEM and sports. Recruit your future leaders from our exceptional team.",
+			"Connect with ambitious TU Delft students excelling in STEM and sports. Recruit your future leaders from our exceptional teams.",
 		icon: RocketIcon,
 		image: "/images/team-meeting.jpg", // Replace with your image
 	},
@@ -25,9 +25,9 @@ const HighlightData = [
 		image: "/images/bologna-city.jpg", // Replace with your image
 	},
 	{
-		title: "Empower Women in STEM & Sports",
+		title: "Empower Students in STEM & Sports",
 		description:
-			"Champion equality and excellence by supporting women balancing demanding academics and athletic pursuits. Align your brand with a powerful message.",
+			"Champion equality and excellence by supporting students balancing demanding academics and athletic pursuits. Align your brand with a powerful message.",
 		icon: TrendingUpIcon,
 		image: "/images/women-stem.jpg", // Replace with your image
 	},
@@ -39,7 +39,7 @@ export function HighlightSection() {
 			<MobilePadding>
 				<div className="container mx-auto text-center">
 					<h2 className="text-3xl font-semibold mb-8 text-gray-800">
-						Why Sponsor TU Delft Women's Basketball?
+						Why Sponsor TU Delft Basketball Teams?
 					</h2>
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 						{HighlightData.map((item, index) => (
