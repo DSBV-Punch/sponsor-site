@@ -3,7 +3,7 @@ import { MobilePadding } from "./mobile-padding";
 // components/why-sponsor.tsx
 export function WhySponsor() {
 	return (
-		<section className="mb-12 bg">
+		<section className="mb-12 bg-white px-20 py-12">
 			<MobilePadding>
 				<h2 className="text-3xl font-semibold mb-6">Why Sponsor Us?</h2>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

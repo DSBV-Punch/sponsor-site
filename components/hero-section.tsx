@@ -33,7 +33,7 @@ export function Hero() {
 								href="https://gofund.me/6ed35a79"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="text-lg inline-block px-6 py-3 border border-black rounded-lg hover:bg-black hover:text-white transition"
+								className="text-lg bg-white inline-block px-6 py-3 border border-black rounded-lg hover:bg-black hover:text-white transition"
 							>
 								Support the Team ☕
 							</Link>

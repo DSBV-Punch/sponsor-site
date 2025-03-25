@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
+import { GradientBG } from "@/components/gradiant-bg";
+import { Footer } from "@/components/footer";
+import { ScrollToTop } from "@/components/scroll-to-top";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -29,12 +32,12 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<div className="bg-gradient-to-br from-purple-500 via-red-300 to-pink-800 min-h-screen overflow-hidden relative">
-					<div className="absolute inset-0 pointer-events-none bg-[url('/patterns/bball.svg')] bg-center opacity-10 animate-[pan_10s_linear_infinite]"></div>
-
-					<Navbar />
+				<Navbar />
+				<GradientBG>
 					{children}
-				</div>
+					<Footer />
+				</GradientBG>
+				<ScrollToTop />
 			</body>
 		</html>
 	);
