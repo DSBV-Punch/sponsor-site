@@ -5,6 +5,8 @@ import { Navbar } from "@/components/navbar";
 import { GradientBG } from "@/components/gradiant-bg";
 import { Footer } from "@/components/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
