@@ -25,7 +25,7 @@ export function Carousel() {
 		cssEase: "linear",
 	};
 	return (
-		<div className="bg-red-400 py-12 h-auto">
+		<div className="bg py-12 h-auto">
 			<div className="mt-12 relative h-auto w-full max-w-2xl mx-auto">
 				<Slider {...settings}>
 					{images.map((image, index) => (

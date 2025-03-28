@@ -14,11 +14,14 @@ export function CallToAction() {
 
 				<div className="container relative mx-auto text-center z-10">
 					<div className="max-w-4xl mx-auto">
-						<h2 className="text-4xl font-extrabold tracking-tight mb-8">
-							Invest in Excellence: Partner with TU Delft Women's Basketball
+						<h1 className="text-6xl font-extrabold text-red-600 tracking-tight mb-8">
+							Invest in Excellence
+						</h1>
+						<h2 className="text-4xl font-bold mb-4">
+							Partner with TU Delft Basketball Teams
 						</h2>
 						<p className="text-xl text-gray-300 mb-12">
-							Elevate your brand by supporting a team of exceptional
+							Elevate your brand by supporting teams of exceptional
 							student-athletes who embody dedication, teamwork, and academic
 							achievement. Your investment fuels their journey to the European
 							University Championship and showcases your commitment to

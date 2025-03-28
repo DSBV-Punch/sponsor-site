@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @tailwind utilities;
+@plugin "daisyui";
 @keyframes pan {
 	100% {
 		background-position: 100% 0;

@@ -43,7 +43,7 @@ const SponsorshipPackages = [
 	{
 		name: "Bronze Sponsor",
 		price: "€1,000",
-		description: "A great way to support the team and gain brand recognition.",
+		description: "A great way to support the teams and gain brand recognition.",
 		features: [
 			"Logo placement on team website",
 			"Social media shout-outs",
@@ -63,8 +63,8 @@ export function SponsorshipOpportunities() {
 						Sponsorship Opportunities
 					</h2>
 					<p className="text-gray-700 mb-8">
-						Partner with TU Delft Women's Basketball and gain valuable exposure
-						while supporting our team's journey to the European University
+						Partner with TU Delft Basketball and gain valuable exposure while
+						supporting our teams' journey to the European University
 						Championship.
 					</p>
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -77,7 +77,7 @@ export function SponsorshipOpportunities() {
 									{/* Icon Above Title */}
 									{packageItem.icon && (
 										<packageItem.icon
-											className={`h-8 w-8 mb-2 text-${packageItem.color} text-amber`}
+											className={`h-8 w-8 mb-2 text-${packageItem.color}`}
 										/>
 									)}
 									<CardTitle className="text-2xl font-semibold">

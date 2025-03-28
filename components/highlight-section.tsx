@@ -58,8 +58,8 @@ export function HighlightSection() {
 										<Image
 											src={item.image}
 											alt={item.title}
-											layout="fill"
-											objectFit="cover"
+											fill={true}
+											style={{ objectFit: "cover" }}
 											className="rounded-md transition-transform duration-300 hover:scale-105"
 										/>
 									</div>

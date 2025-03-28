@@ -15,17 +15,26 @@ export default function OurJourneySection() {
 
 					{/* Intro Paragraphs */}
 					<p className="text-gray-700 text-lg md:text-xl mb-4">
-						We are the women’s basketball team of Delft University of
-						Technology, proudly representing Punch in both national competitions
-						and student tournaments.
+						We are the basketball teams of Delft University of Technology,
+						proudly representing Punch in both national competitions and student
+						tournaments.
+					</p>
+					<p className="text-gray-700 text-lg md:text-xl mb-4">
+						Both our men's and women's teams have qualified for the European
+						University Championships (EUC) in Bologna, Italy.
 					</p>
 					<p className="text-gray-700 text-lg md:text-xl mb-8">
-						In 2024, our hard work paid off when we became Dutch Student
-						Champions at GNSK in Rotterdam — earning us a place at the{" "}
+						In 2024, our hard work paid off when the women became Dutch Student
+						Champions at GNSK in Rotterdam — earning them a place at the{" "}
 						<span className="font-semibold">
 							European University Championships (EUC)
 						</span>{" "}
 						in Bologna, Italy.
+					</p>
+					{/* Add Men's Team Acheivement */}
+					<p className="text-gray-700 text-lg md:text-xl mb-8">
+						The Men's team also had a fantastic year, achieving 2nd and securing
+						their spot at EUC Bologna 2025.
 					</p>
 				</div>
 
