@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -37,6 +38,7 @@ export default function RootLayout({
 				<Navbar />
 				<GradientBG>
 					{children}
+					<Toaster richColors position="top-right" />
 					<Footer />
 				</GradientBG>
 				<ScrollToTop />

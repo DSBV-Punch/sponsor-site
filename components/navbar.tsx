@@ -16,6 +16,7 @@ const navItems = [
 	{ label: "Sponsorship", href: "/sponsorship" },
 	{ label: "Team", href: "/team" },
 	{ label: "About", href: "/about" },
+	{ label: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {
