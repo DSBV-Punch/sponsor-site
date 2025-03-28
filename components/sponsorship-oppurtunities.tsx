@@ -1,11 +1,12 @@
+// components/SponsorshipOpportunities.tsx
 "use client";
 
+import Link from "next/link"; // Import Link
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
 	HeartIcon as CheckCircleIcon,
 	StarIcon,
-	// SparklesIcon as DiamondIcon,
 } from "@heroicons/react/24/solid";
 import { Gem as DiamondIcon } from "lucide-react";
 import { MobilePadding } from "./mobile-padding";
@@ -24,7 +25,7 @@ const SponsorshipPackages = [
 			"Inclusion in press releases and media coverage",
 		],
 		icon: DiamondIcon,
-		color: "yellow-500",
+		color: "yellow-500", // Note: text-yellow-500 needs to be used correctly
 	},
 	{
 		name: "Silver Sponsor",
@@ -38,7 +39,7 @@ const SponsorshipPackages = [
 			"Tickets to all home games",
 		],
 		icon: StarIcon,
-		color: "gray-300",
+		color: "gray-400", // Adjusted for better visibility if needed
 	},
 	{
 		name: "Bronze Sponsor",
@@ -50,61 +51,108 @@ const SponsorshipPackages = [
 			"Tickets to select home games",
 		],
 		icon: CheckCircleIcon,
-		color: "red-600",
+		color: "orange-600", // Changed from red for bronze feel
 	},
 ];
 
 export function SponsorshipOpportunities() {
 	return (
-		<section className="py-16 bg-gray-50">
+		<section id="sponsorship" className="py-16 bg-gray-50">
+			{" "}
+			{/* Added id */}
 			<MobilePadding>
 				<div className="container mx-auto text-center">
 					<h2 className="text-3xl font-semibold mb-8 text-gray-800">
 						Sponsorship Opportunities
 					</h2>
-					<p className="text-gray-700 mb-8">
+					<p className="text-gray-700 mb-8 max-w-3xl mx-auto">
+						{" "}
+						{/* Added max-width */}
 						Partner with TU Delft Basketball and gain valuable exposure while
 						supporting our teams' journey to the European University
-						Championship.
+						Championship. Choose the level that best suits your goals.
 					</p>
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-						{SponsorshipPackages.map((packageItem, index) => (
-							<Card
-								key={index}
-								className="shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col"
-							>
-								<CardHeader className="flex flex-col items-center">
-									{/* Icon Above Title */}
-									{packageItem.icon && (
-										<packageItem.icon
-											className={`h-8 w-8 mb-2 text-${packageItem.color}`}
-										/>
-									)}
-									<CardTitle className="text-2xl font-semibold">
-										{packageItem.name}
-									</CardTitle>
-								</CardHeader>
-								<CardContent className="flex-grow">
-									<div className="text-gray-700 mb-4">
-										<p className="text-xl font-bold">{packageItem.price}</p>
-										<p className="mt-2">{packageItem.description}</p>
+						{SponsorshipPackages.map((packageItem, index) => {
+							// Construct the subject query parameter
+							const subjectQuery = encodeURIComponent(
+								`${packageItem.name} Inquiry`
+							);
+							const contactHref = `/contact?subject=${subjectQuery}`;
+
+							// Construct Tailwind color class dynamically (requires full class name)
+							// Note: Dynamic class generation like `text-${packageItem.color}` might not work
+							// with Tailwind's purging. Define full classes or use inline styles if needed.
+							// Let's map them explicitly for safety:
+							const iconColorClass =
+								{
+									"yellow-500": "text-yellow-500",
+									"gray-400": "text-gray-400",
+									"orange-600": "text-orange-600",
+								}[packageItem.color] || "text-gray-500"; // Fallback color
+
+							return (
+								<Card
+									key={index}
+									className="shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col text-left" // Align text left
+								>
+									<CardHeader className="flex flex-col items-center text-center pt-6">
+										{" "}
+										{/* Center header */}
+										{packageItem.icon && (
+											<packageItem.icon
+												className={`h-10 w-10 mb-3 ${iconColorClass}`} // Adjusted size/margin
+												aria-hidden="true"
+											/>
+										)}
+										<CardTitle className="text-2xl font-semibold">
+											{packageItem.name}
+										</CardTitle>
+									</CardHeader>
+									<CardContent className="flex-grow px-6 pb-6">
+										{" "}
+										{/* Adjusted padding */}
+										<div className="text-center mb-4">
+											{" "}
+											{/* Center price/desc */}
+											<p className="text-xl font-bold text-gray-800">
+												{packageItem.price}
+											</p>
+											<p className="mt-2 text-gray-600">
+												{packageItem.description}
+											</p>
+										</div>
+										<ul className="space-y-2 text-gray-600 mb-6">
+											{" "}
+											{/* Use space-y */}
+											{packageItem.features.map((feature, i) => (
+												<li key={i} className="flex items-start">
+													<CheckCircleIcon
+														className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5"
+														aria-hidden="true"
+													/>
+													<span>{feature}</span>
+												</li>
+											))}
+										</ul>
+									</CardContent>
+									{/* Button at the Same Level */}
+									<div className="mt-auto p-6 pt-0">
+										{" "}
+										{/* Adjusted padding */}
+										<Button
+											asChild // Render the Link child
+											className="w-full bg-red-600 hover:bg-red-700 text-white text-lg py-3" // Adjusted styles
+											size="lg" // Use shadcn size
+										>
+											<Link href={contactHref}>
+												Become a {packageItem.name}!
+											</Link>
+										</Button>
 									</div>
-									<ul className="list-disc list-inside text-gray-600 mb-4">
-										{packageItem.features.map((feature, i) => (
-											<li key={i}>{feature}</li>
-										))}
-									</ul>
-								</CardContent>
-								{/* Button at the Same Level */}
-								<div className="mt-auto p-4">
-									<Button
-										className={`w-full bg-red-600 hover:bg-red-900 text-white`}
-									>
-										Become a {packageItem.name}!
-									</Button>
-								</div>
-							</Card>
-						))}
+								</Card>
+							);
+						})}
 					</div>
 				</div>
 			</MobilePadding>
