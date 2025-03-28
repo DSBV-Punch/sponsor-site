@@ -6,7 +6,7 @@ import { z } from "zod";
 import nodemailer from "nodemailer";
 import { render } from "@react-email/render"; // To render React components to HTML
 import ConfirmationEmail from "@/emails/ConfirmationEmail"; // Adjust path if needed
-// import ContactFormEmail from "@/emails/ContactFormEmail"; // If using this too
+import ContactFormEmail from "@/emails/ContactFormEmail"; // Adjust path if needed
 
 // --- Environment Variable Check ---
 const user = process.env.GOOGLE_EMAIL_USER;
@@ -114,26 +114,17 @@ export async function sendEmailAction(
 	try {
 		// 3. Render Email Templates - AWAIT the result using React.createElement
 		console.log("Rendering email templates using React.createElement...");
-		emailHtmlToSender = await render(
-			React.createElement(ConfirmationEmail, { name, subject }) // Use React.createElement
+
+		// Render the owner notification email
+		emailHtmlToOwner = await render(
+			React.createElement(ContactFormEmail, { name, email, subject, message })
 		);
 
-		// Use a simple string or render another template for the owner
-		emailHtmlToOwner = `
-      <h1>New Contact Form Submission</h1>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Subject:</strong> ${subject}</p>
-      <hr>
-      <p><strong>Message:</strong></p>
-      <p>${message.replace(/\n/g, "<br>")}</p>
-      <hr>
-      <p>Reply directly to ${email}.</p>
-    `;
-		// Example if rendering ContactFormEmail component:
-		// emailHtmlToOwner = await render(
-		//   React.createElement(ContactFormEmail, { name, email, subject, message })
-		// );
+		// Render the sender confirmation email
+		emailHtmlToSender = await render(
+			React.createElement(ConfirmationEmail, { name, subject })
+		);
+
 		console.log("Email templates rendered successfully.");
 
 		// Optional check
@@ -160,18 +151,18 @@ export async function sendEmailAction(
 	try {
 		// 4. Define Mail Options
 		const mailOptionsOwner = {
-			from: `"${name} (via Website)" <${user}>`,
-			to: toEmail,
+			from: `"${name} [Contact Form]" <${user}>`, // Use configured user email
+			to: toEmail, // Your team's receiving address
 			subject: `New Contact Form: ${subject}`,
-			replyTo: email,
-			html: emailHtmlToOwner, // Use the rendered string
+			replyTo: email, // Set reply-to to the sender's email
+			html: emailHtmlToOwner, // Use the rendered HTML string for owner
 		};
 
 		const mailOptionsSender = {
-			from: `"Sponsor Punch Basketball" <${user}>`,
-			to: email,
+			from: `"Sponsor Punch Basketball" <${user}>`, // Use configured user email
+			to: email, // Sender's email address
 			subject: `Message Received: ${subject}`,
-			html: emailHtmlToSender, // Use the rendered string
+			html: emailHtmlToSender, // Use the rendered HTML string for sender
 		};
 
 		// 5. Send Emails
