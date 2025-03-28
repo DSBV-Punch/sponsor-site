@@ -3,6 +3,7 @@
 
 import { CallToAction } from "@/components/call-to-action";
 import { Carousel } from "@/components/carousel";
+import { CountdownTimer } from "@/components/countdown_timer";
 import { GoFundMeSection } from "@/components/gofundme-section";
 import { GradientBG } from "@/components/gradiant-bg";
 import { Hero } from "@/components/hero-section";
@@ -18,6 +19,7 @@ export default function Home() {
 			<Hero />
 			{/* <Hero2 /> */}
 			<HighlightSection />
+			<CountdownTimer />
 			<SponsorshipOpportunities />
 			<CallToAction />
 			<GoFundMeSection />
